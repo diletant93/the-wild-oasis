@@ -50,7 +50,13 @@ const variations = {
 const Button = styled.button`
   border:none;
   border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
   transition: background-color .3s;
-  
+  ${props => sizes[props.size]}
+  ${props => variations[props.variation]}
 `
+Button.defaultProps ={
+  variation:'primary',
+  size:'medium'
+}
 export default Button
