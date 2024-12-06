@@ -47,3 +47,10 @@ const variations = {
     }
   `,
 };
+const Button = styled.button`
+  border:none;
+  border-radius: var(--border-radius-lg);
+  transition: background-color .3s;
+  
+`
+export default Button
