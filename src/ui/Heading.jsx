@@ -3,7 +3,6 @@ import styled , {css} from "styled-components";
 
 const Heading = styled.h1`
     font-size: 30px;
-    background-color: red;
     ${props => props.as === 'h1' &&
     css`
         font-size: 3rem;
