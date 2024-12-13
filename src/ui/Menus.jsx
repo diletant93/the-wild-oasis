@@ -71,7 +71,6 @@ function Menus({children}) {
   const [position, setPosition] = useState(null)
   const close = () => setOpenId('')
   const open = setOpenId
-  console.log('Inside menus')
   return (
     <MenusContext.Provider value={{
       openId,

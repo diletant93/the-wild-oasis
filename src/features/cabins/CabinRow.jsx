@@ -87,5 +87,3 @@ function CabinRow({cabin}) {
 }
 
 export default  CabinRow;
-
-{/* <button  disabled={isDeleting}><HiTrash/></button>  */}
