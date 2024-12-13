@@ -11,5 +11,18 @@ const StyledSelect = styled.select`
   border-radius: var(--border-radius-sm);
   background-color: var(--color-grey-0);
   font-weight: 500;
+  cursor: pointer;
   box-shadow: var(--shadow-sm);
 `;
+const Option = styled.option`
+  cursor: pointer;
+`
+function Select({options, value, onChange}) {
+  return (
+    <StyledSelect onChange={onChange} value={value}>  
+      {options.map(option => <Option value={option.value} key={option.value}>{option.label}</Option>)}
+    </StyledSelect>
+  );
+}
+
+export default  Select;
