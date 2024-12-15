@@ -29,3 +29,15 @@ const Box = styled.div`
     color: var(--color-grey-500);
   }
 `;
+
+function ErrorFallback({children}) {
+  return (
+    <StyledErrorFallback>
+      <Box>
+        {children}
+      </Box>
+    </StyledErrorFallback>
+  );
+}
+
+export default  ErrorFallback;

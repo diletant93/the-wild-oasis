@@ -1,9 +1,17 @@
 import BookingRow from "./BookingRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
-
+import { useBookings } from "./useBookings";
+import Spinner from "../../ui/Spinner";
+import Empty from "../../ui/Empty";
+import ErrorFallback from "../../ui/ErrorFallback";
 function BookingTable() {
-  const bookings = [];
+  const {isLoading, bookings,error} = useBookings()
+  console.log(error)
+
+  if(error) return <ErrorFallback>Error while loading bookings</ErrorFallback>
+  if(!bookings?.length) return <Empty resource='bookings'/>
+  if(isLoading) return <Spinner />
 
   return (
     <Menus>

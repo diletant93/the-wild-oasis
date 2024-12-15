@@ -4,23 +4,34 @@ import { useCabins } from "./useCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
  
 function CabinTable() {
   const {isLoading, data:cabins} = useCabins()
   const [searchParams] = useSearchParams()
 
   const filterValue = searchParams.get('discount') || 'all'
-  let filteredCabins
-
-
-  if(filterValue === 'all') filteredCabins = cabins
-  if(filterValue === 'no-discount') filteredCabins = cabins.filter(cabin => cabin.discount === 0)
-  if(filterValue === 'with-discount') filteredCabins = cabins.filter(cabin => cabin.discount > 0)
+  let filteredCabins = cabins
+ 
+  if(cabins){
+    if(filterValue === 'no-discount') filteredCabins = cabins.filter(cabin => cabin.discount === 0)
+    if(filterValue === 'with-discount') filteredCabins = cabins.filter(cabin => cabin.discount > 0)
+  }
 
   const sortBy = searchParams.get('sortBy') || 'startDate-asc'
   const [field,direction] = sortBy.split('-')
   const modifier = direction === 'asc' ? 1 : -1
-  const sortedCabins = filteredCabins.sort((a,b)=>(a[field] - b[field])*modifier)
+  let sortedCabins = filteredCabins
+  if(filteredCabins?.length > 0){
+    console.log(filteredCabins)
+    if(typeof filteredCabins[0][field] === 'string'){
+      sortedCabins = filteredCabins.slice().sort((a, b) => a[field].localeCompare(b[field])* modifier) 
+      console.log(sortedCabins)
+    } else if(typeof filteredCabins[0][field] === 'number'){
+      sortedCabins = filteredCabins.slice().sort((a, b) => (a[field]-b[field])* modifier) 
+    }
+  }
+
 
   if(isLoading) return <Spinner/>
   return (

@@ -20,7 +20,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'react-hooks/rules-of-hooks': 'warn', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'warn' ,
-    'react/prop-types': 'warn',
+    'react/prop-types': 'off',
     'react/jsx-no-target-blank': 'error',
   },
 }
