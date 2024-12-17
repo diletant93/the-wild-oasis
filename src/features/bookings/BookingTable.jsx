@@ -5,8 +5,9 @@ import { useBookings } from "./useBookings";
 import Spinner from "../../ui/Spinner";
 import Empty from "../../ui/Empty";
 import ErrorFallback from "../../ui/ErrorFallback";
+import Pagination from "../../ui/Pagination";
 function BookingTable() {
-  const {isLoading, bookings,error} = useBookings()
+  const {isLoading, bookings,error,count} = useBookings()
   console.log(error)
 
   if(error) return <ErrorFallback>Error while loading bookings</ErrorFallback>
@@ -31,6 +32,9 @@ function BookingTable() {
             <BookingRow key={booking.id} booking={booking} />
           )}
         />
+        <Table.Footer>
+          <Pagination count={count}/>
+        </Table.Footer>
       </Table>
     </Menus>
   );
