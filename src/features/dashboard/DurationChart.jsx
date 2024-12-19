@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import Heading from "../../ui/Heading";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import { useMode } from "../../contexts/ModeProvider";
 
 const ChartBox = styled.div`
   /* Box */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
-
+  text-align: center;
   padding: 2.4rem 3.2rem;
   grid-column: 3 / span 2;
 
@@ -115,7 +118,7 @@ function prepareData(startData, stays) {
 
   const data = stays
     .reduce((arr, cur) => {
-      const num = cur.numNights;
+      const num = cur.numberNights;
       if (num === 1) return incArrayValue(arr, "1 night");
       if (num === 2) return incArrayValue(arr, "2 nights");
       if (num === 3) return incArrayValue(arr, "3 nights");
@@ -130,3 +133,43 @@ function prepareData(startData, stays) {
 
   return data;
 }
+function DurationChart({confirmedStays}) {
+  const {isLightMode} = useMode()
+  console.log(confirmedStays)
+  const startData = !isLightMode ? startDataLight : startDataDark
+  console.log(startData)
+  const data = prepareData(startData, confirmedStays)
+  console.log(data)
+  return (
+    <ChartBox>
+      <Heading as='h2'>Stay duration summary</Heading>
+      <ResponsiveContainer width='100%' height={240}>
+        <PieChart>
+            <Pie 
+            data={data}
+             nameKey='duration' 
+             dataKey='value'
+             innerRadius={85}
+             outerRadius={110}
+             cx='50%'
+             cy='50%' 
+             paddingAngle={3}
+             >
+              {data.map(entry=><Cell key={entry.color} fill={entry.color} stroke={entry.color}/>)}
+             </Pie>
+             <Legend 
+             verticalAlign='middle' 
+             align='right' 
+             width='30%'
+              layout="vertical"
+              iconSize={15}
+              iconType="circle"
+              />
+              <Tooltip/>
+        </PieChart>
+      </ResponsiveContainer>
+    </ChartBox>
+  );
+}
+
+export default  DurationChart;
