@@ -1,4 +1,8 @@
+import { FaAccessibleIcon } from "react-icons/fa";
 import styled from "styled-components";
+import Heading from "./Heading";
+import GlobalStyles from "../styles/GlobalStyles";
+import Button from "./Button";
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -30,13 +34,19 @@ const Box = styled.div`
   }
 `;
 
-function ErrorFallback({children}) {
+function ErrorFallback({error,resetErrorBoundary}) {
+  console.log('here in the fallback')
   return (
-    <StyledErrorFallback>
-      <Box>
-        {children}
-      </Box>
-    </StyledErrorFallback>
+    <>
+    <GlobalStyles/>
+      <StyledErrorFallback>
+        <Box>
+          <Heading as='h1'>Something went wrong <FaAccessibleIcon/></Heading>
+          <p>{error.message}</p>
+          <Button size="large" onClick={resetErrorBoundary}>Try Again</Button>
+        </Box>
+      </StyledErrorFallback>
+    </>
   );
 }
 
