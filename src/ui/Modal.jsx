@@ -70,16 +70,23 @@ function Modal({children}){
   )
 }
 
-function Open({children, opens:opensWindowName}){
+function Open({opens:opensWindowName, children}){
   const {open} = useContext(ModalContext)
   
-  return cloneElement(children , {onClick:()=>open(opensWindowName)})
+  return cloneElement(children , {onClick:()=>{
+    console.log('clicked')
+    console.log(opensWindowName)
+    return open(opensWindowName)}})
 }
 
 function Window({name, children}) {
   const {openName,close} = useContext(ModalContext)  
   const ref = useOutsideClick(close)
-  if(name !== openName)return null
+  if(name !== openName){
+    console.log('no matched:',name)
+    return null
+  }
+  console.log(name)
   return createPortal(
     <Overlay>
     <StyledModal ref={ref}>

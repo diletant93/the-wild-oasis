@@ -13,6 +13,10 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Applayout from "./ui/Applayout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Booking from "./pages/Booking";
+import Checkin from "./pages/Checkin";
+import ExperimentalPage from "./pages/ExperimentalPage";
+import ProtectedRoute from "./ui/ProtectedRoute";
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
@@ -48,18 +52,24 @@ function App() {
         }}/>
       <BrowserRouter>
         <Routes>
-          <Route element={<Applayout />}>
+          <Route element={
+            <ProtectedRoute>
+                <Applayout />
+            </ProtectedRoute>
+          }>
             <Route index element={<Navigate to='/dashboard'></Navigate>}/>
             <Route path="/dashboard" element={<Dashboard />}/>
             <Route path="/bookings" element={<Bookings />}/>
+            <Route path="/bookings/:id" element={<Booking/>}/>
+            <Route path="/checkin/:id" element={<Checkin/>}/>
             <Route path="/cabins" element={<Cabins />}/>
             <Route path="/users" element={<NewUsers />}/>
             <Route path="/settings" element={<Settings />}/>
             <Route path="/account" element={<Account />}/>
+            <Route path="/experimental" element={<ExperimentalPage/>}/>
           </Route>
             <Route path="/login" element={<Login />}/>
             <Route path="*" element={<PageNotFound />}/>
-
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

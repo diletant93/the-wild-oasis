@@ -7,6 +7,7 @@ import {
   HiOutlineHomeModern,
   HiOutlineUsers,
   HiCalendarDays,
+  HiOutlinePlayPause,
 } from "react-icons/hi2";
 const NavList = styled.ul`
   display: flex;
@@ -85,6 +86,12 @@ function MainNav() {
           <StyledNavLink to="/settings">
             <HiAdjustmentsVertical/>
             <span>Settings</span>
+        </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/experimental">
+            <HiOutlinePlayPause />
+            <span>Experiments</span>
         </StyledNavLink>
         </li>
       </NavList>

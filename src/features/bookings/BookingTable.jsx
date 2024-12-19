@@ -8,7 +8,6 @@ import ErrorFallback from "../../ui/ErrorFallback";
 import Pagination from "../../ui/Pagination";
 function BookingTable() {
   const {isLoading, bookings,error,count} = useBookings()
-  console.log(error)
 
   if(error) return <ErrorFallback>Error while loading bookings</ErrorFallback>
   if(!bookings?.length) return <Empty resource='bookings'/>

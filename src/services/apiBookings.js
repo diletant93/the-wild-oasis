@@ -41,7 +41,7 @@ export async function getBooking(id) {
     console.error(error);
     throw new Error("Booking not found");
   }
-
+  console.log('inside the fetch data',data)
   return data;
 }
 
@@ -122,5 +122,6 @@ export async function deleteBooking(id) {
     console.error(error);
     throw new Error("Booking could not be deleted");
   }
+  console.log('here:',data)
   return data;
 }
