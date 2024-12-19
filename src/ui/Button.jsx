@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 const sizes = {
   small: css`
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     padding: 0.4rem 0.8rem;
     text-transform: uppercase;
     font-weight: 600;
@@ -52,6 +52,7 @@ const Button = styled.button`
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   transition: background-color .3s;
+  text-align: center;
   ${props => sizes[props.size]}
   ${props => variations[props.variation]}
 `
