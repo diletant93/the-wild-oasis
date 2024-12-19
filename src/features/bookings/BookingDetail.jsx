@@ -17,6 +17,7 @@ import { useDeleteBooking } from "./useDeleteBooking";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useNavigate } from "react-router-dom";
+import Empty from "../../ui/Empty";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -42,7 +43,9 @@ function BookingDetail() {
       onSuccess:()=>navigate('/bookings')
     })
   }
+  console.log(booking)
   if(isLoading) return <Spinner/>
+  if(Object.keys(booking).length===0) return <Empty resource='booking'/>
   return (
     <>
       <Row type="horizontal">

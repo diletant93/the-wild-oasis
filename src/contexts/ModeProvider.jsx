@@ -3,7 +3,9 @@ import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 const ModeContext = createContext()
 function ModeProvider({children}) {
-  const [isLightMode,setIsLightMode] = useLocalStorageState(true,'mode')
+  const [isLightMode,setIsLightMode] = useLocalStorageState(
+    window.matchMedia('(prefer-color-scheme: dark)').matches
+    ,'mode')
   const changeMode = () => setIsLightMode(mode => !mode)  
   
   useEffect(function(){
