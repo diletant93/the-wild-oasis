@@ -26,3 +26,6 @@ export const getToday = function (options = {}) {
 
 export const formatCurrency = (value) =>
   new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(value);
+
+export const formatPercentage = (value, decimalPlaces=1)=> 
+  `${Number((value).toFixed(decimalPlaces))*10}%`
