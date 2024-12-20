@@ -19,6 +19,7 @@ function DashboardLayout() {
   const {isLoading , bookings} = useRecentBookings()
   const {isLoading:isLoadingStays, stays, confirmedStays ,numDays} = useRecentStays()
   const {isLoading:isLoadingCabins, cabins} = useCabins()
+  // eslint-disable-next-line no-constant-condition
   if(isLoading || isLoadingStays || isLoadingCabins)return <Spinner/>
 
   console.log(bookings)
