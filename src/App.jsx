@@ -1,5 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Navigate } from "react-router-dom";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import ModeProvider from "./contexts/ModeProvider";
 import Bookings from "./pages/Bookings";
 import Cabins from "./pages/Cabins";
 import NewUsers from "./pages/Users";
@@ -8,16 +13,12 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Dashboard from "./pages/Dashboard";
-import { Navigate } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
+import ProtectedRoute from "./ui/ProtectedRoute";
 import Applayout from "./ui/Applayout";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Toaster } from "react-hot-toast";
 import Booking from "./pages/Booking";
 import Checkin from "./pages/Checkin";
 import ExperimentalPage from "./pages/ExperimentalPage";
-import ProtectedRoute from "./ui/ProtectedRoute";
-import ModeProvider from "./contexts/ModeProvider";
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
@@ -40,18 +41,18 @@ function App() {
         toastOptions={{
           success:{
             duration:3000,
-            },
-            error:{
-              duration:5000,
-            },
-            style:{
-              fontSize:'16px',
-              maxWidth:'30rem',
-              padding:'16px 24px',
-              backgroundColor:'var(--color-grey-0)',
-              color:'var(--color-grey-700)'
-            }
-          }}/>
+          },
+          error:{
+            duration:5000,
+          },
+          style:{
+            fontSize:'16px',
+            maxWidth:'30rem',
+            padding:'16px 24px',
+            backgroundColor:'var(--color-grey-0)',
+            color:'var(--color-grey-700)'
+          }
+        }}/>
         <BrowserRouter>
           <Routes>
             <Route element={
