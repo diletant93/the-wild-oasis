@@ -1,23 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Bookings from "./pages/Bookings";
-import Cabins from "./pages/Cabins";
-import NewUsers from "./pages/Users";
-import Settings from "./pages/Settings";
-import Account from "./pages/Account";
-import Login from "./pages/Login";
-import PageNotFound from "./pages/PageNotFound";
-import Dashboard from "./pages/Dashboard";
+import { lazy, Suspense } from "react";
 import { Navigate } from "react-router-dom";
-import GlobalStyles from "./styles/GlobalStyles";
-import Applayout from "./ui/Applayout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-import Booking from "./pages/Booking";
-import Checkin from "./pages/Checkin";
-import ExperimentalPage from "./pages/ExperimentalPage";
-import ProtectedRoute from "./ui/ProtectedRoute";
+import Spinner from "./ui/Spinner";
 import ModeProvider from "./contexts/ModeProvider";
+import GlobalStyles from "./styles/GlobalStyles";
+const Bookings = lazy(()=>import("./pages/Bookings"))
+const Dashboard = lazy(()=>import("./pages/Dashboard"))
+const Cabins = lazy(()=>import('./pages/Cabins'))
+const NewUsers = lazy(() => import("./pages/Users"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Account = lazy(() => import("./pages/Account"));
+const Login = lazy(() => import("./pages/Login"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const Applayout = lazy(() => import("./ui/Applayout"));
+const Booking = lazy(() => import("./pages/Booking"));
+const Checkin = lazy(() => import("./pages/Checkin"));
+const ExperimentalPage = lazy(() => import("./pages/ExperimentalPage"));
+const ProtectedRoute = lazy(() => import("./ui/ProtectedRoute"));
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
@@ -30,6 +32,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
+    <Suspense fallback={<Spinner/>}>
     <QueryClientProvider client={queryClient}>
       <ModeProvider>
         <ReactQueryDevtools initialIsOpen={false}/>
@@ -76,6 +79,7 @@ function App() {
         </BrowserRouter>
       </ModeProvider>
     </QueryClientProvider>
+    </Suspense>
   );
 }
 
