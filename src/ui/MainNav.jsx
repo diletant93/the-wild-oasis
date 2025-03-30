@@ -88,12 +88,6 @@ function MainNav() {
             <span>Settings</span>
         </StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to="/experimental">
-            <HiOutlinePlayPause />
-            <span>Experiments</span>
-        </StyledNavLink>
-        </li>
       </NavList>
     </nav>
   );

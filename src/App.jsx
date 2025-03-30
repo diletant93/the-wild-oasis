@@ -18,8 +18,8 @@ const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Applayout = lazy(() => import("./ui/Applayout"));
 const Booking = lazy(() => import("./pages/Booking"));
 const Checkin = lazy(() => import("./pages/Checkin"));
-const ExperimentalPage = lazy(() => import("./pages/ExperimentalPage"));
 const ProtectedRoute = lazy(() => import("./ui/ProtectedRoute"));
+
 const queryClient = new QueryClient({
   defaultOptions:{
     queries:{
@@ -71,7 +71,6 @@ function App() {
               <Route path="/users" element={<NewUsers />}/>
               <Route path="/settings" element={<Settings />}/>
               <Route path="/account" element={<Account />}/>
-              <Route path="/experimental" element={<ExperimentalPage/>}/>
             </Route>
               <Route path="/login" element={<Login />}/>
               <Route path="*" element={<PageNotFound />}/>

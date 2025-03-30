@@ -25,11 +25,12 @@
     "react-router-dom": "^6.28.0",
     "recharts": "^2.15.0",
     "styled": "^1.0.0",
-    "styled-components": "^6.1.13"
+    "styled-components": "^6.1.13",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",

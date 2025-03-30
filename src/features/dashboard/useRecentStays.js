@@ -12,7 +12,9 @@ function useRecentStays(){
         queryFn:()=>getStaysAfterDate(queryDate),
      })
 
-     const confirmedStays = stays?.filter(stay => stay.status === 'checked-in' || stay.status === 'checked-out' )
+     const confirmedStays = stays?.filter(stay => stay.status === 'checked-in' || stay.status === 'checked-out')
+     console.log('here:',stays)
+     console.log('herex2:',confirmedStays)
      return {isLoading , stays,error, confirmedStays , numDays}
 }
 
