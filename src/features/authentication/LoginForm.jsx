@@ -7,8 +7,8 @@ import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("tdemo4876@gmail.com");
+  const [password, setPassword] = useState("12345678");
   const {isLoggingIn, login} = useLogin()
   function cleanFields(){
     setEmail('')
@@ -37,7 +37,7 @@ function LoginForm() {
       </FormRowVertical>
       <FormRowVertical label="Password">
         <Input
-         
+         type="password"
           id="password"
           autoComplete="current-password"
           value={password}
